@@ -1,0 +1,32 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Giỏ hàng của bạn| Cảm ơn bạn nhiều
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row" style="margin-top: 6%">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="page-header">Cảm ơn bạn đang mua hàng của chúng tôi
+                </h3>
+                <p>Đơn hàng của bạn đã được hoàn thành. Mã đơn hàng của bạn là <strong>{{ order.id }}</strong>.</p>
+            </div>
+        </div>
+    </div>
+    <center>
+    <script type="text/javascript">
+        var timeleft = 10;
+        var downloadTimer = setInterval(function(){
+        if(timeleft <= 0){
+            clearInterval(downloadTimer);
+            window.location="{% url 'shop:product_list' %}";
+        } else {
+            document.getElementById("countdown").innerHTML ="Bạn sẽ trở về trang chủ sau "+ timeleft + " giây còn lại";
+        }
+        timeleft -= 1;
+        }, 1000);
+    </script>
+        <div id="countdown"></div>
+    </center>
+{% endblock %}
